@@ -42,7 +42,7 @@ class GroundTruthDetectionDataset(gluon.data.Dataset):
         self.data_path = data_path
         self.image_info = []
         self.task = task
-        with open(os.path.join(data_path,'manifest', 'output.manifest')) as f:
+        with open(os.path.join(data_path, 'manifest', 'output.manifest')) as f:
             lines = f.readlines()
             for line in lines:
                 info = json.loads(line[:-1])
@@ -74,7 +74,7 @@ class GroundTruthDetectionDataset(gluon.data.Dataset):
         label: np.NDArray bounding box labels of the form [[x1,y1, x2, y2, class], ...]
         """
         info = self.image_info[idx]
-        image = mx.image.imread(os.path.join(self.data_path,info['source-ref'].split('/')[-1]))
+        image = mx.image.imread(os.path.join(self.data_path, 'images', info['source-ref'].split('/')[-1]))
         boxes = info[self.task]['annotations']
         label = []
         for box in boxes:
