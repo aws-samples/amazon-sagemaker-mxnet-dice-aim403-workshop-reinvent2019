@@ -19,7 +19,7 @@ While the instance is getting launched we're going to give you a primer on SageM
 
 2) Click: "Open Jupyter" and **DO NOT** click "Open Jupyterlab", we're using the old jupyter notebook to allow a cool demo at the end to run directly in the browser.
 
-## Step 4: Open vegas-dice-notebook.ipynb
+## Step 4: Open vegas_dice_notebook.ipynb
 
 Follow the instructions from then on, as a recap:
 - Creation of a SageMaker GroundTruth job and labeling of a sample of 5 images
