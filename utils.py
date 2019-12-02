@@ -77,9 +77,9 @@ def show_webcam():
     
     VIDEO_HTML = """
     <h3>Live Feed</h3>
-    <video autoplay width=%d height=%d></video>
+    <video autoplay height=%d></video>
     <h3>Predicted Feed</h3>
-    <canvas id="annotated" width=%d height=%d ></canvas>
+    <canvas id="annotated"  width=%d height=%d></canvas>
     <script>
 
     var video = document.querySelector('video')
@@ -91,6 +91,7 @@ def show_webcam():
 
 
     function handle_output(output) {
+        console.log(output)
         var canvas = document.getElementById('annotated')
         var ctx = canvas.getContext("2d");
         var image = new Image();
@@ -124,5 +125,5 @@ def show_webcam():
     </script>
     """
 
-    display(HTML(VIDEO_HTML % (size[0], size[1], size[0], size[1], quality)))
+    display(HTML(VIDEO_HTML % ( size[1], size[0], size[1], quality)))
     

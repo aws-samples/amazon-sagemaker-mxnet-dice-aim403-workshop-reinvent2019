@@ -54,12 +54,9 @@ class GroundTruthDetectionDataset(gluon.data.Dataset):
         random.shuffle(self.image_info)
         l = len(self.image_info)
         if split == 'train':
-            self.image_info = self.image_info[:int(0.85*l)]
+            self.image_info = self.image_info[:int(0.9*l)]
         if split == 'val':
-            self.image_info = self.image_info[int(0.85*l):int(l)]
-        if split == 'test':
-            self.image_info = self.image_info[int(0.99*l):]
-
+            self.image_info = self.image_info[int(0.9*l):int(l)]
         
         
     def __getitem__(self, idx):
@@ -113,9 +110,9 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
 
-    parser.add_argument('--batch_size', type=int, default=16)
+    parser.add_argument('--batch_size', type=int, default=8)
     parser.add_argument('--epochs', type=int, default=1)
-    parser.add_argument('--lr', type=float, default=0.01)
+    parser.add_argument('--lr', type=float, default=0.001)
     parser.add_argument('--lr_factor', type=float, default=0.5)
     parser.add_argument('--class_factor', type=float, default=1)
     parser.add_argument('--wd', type=float, default=0.00001)
@@ -166,9 +163,9 @@ if __name__ == '__main__':
     image_w = 512
     ctx = [mx.gpu(0)] if mx.context.num_gpus() > 0 else [mx.cpu()]
     print(ctx)
-    num_workers = 6
     batch_size = args.batch_size
     num_epochs = args.epochs
+    num_workers = 0 if num_epochs <= 2 else 6
     learning_rate = args.lr
     learning_rate_factor = args.lr_factor
     class_factor = args.class_factor
@@ -228,7 +225,6 @@ if __name__ == '__main__':
         for i, batch in enumerate(train_data):
             batch_size = batch[0].shape[0]
             data = gluon.utils.split_and_load(batch[0], ctx_list=ctx, batch_axis=0)
-    
             # objectness, center_targets, scale_targets, weights, class_targets
             fixed_targets = [gluon.utils.split_and_load(batch[it], ctx_list=ctx, batch_axis=0) for it in range(1, 6)]
             gt_boxes = gluon.utils.split_and_load(batch[6], ctx_list=ctx, batch_axis=0)
