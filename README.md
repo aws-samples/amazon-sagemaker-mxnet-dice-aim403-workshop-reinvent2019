@@ -2,7 +2,6 @@
 
 <div style="text-align:center"><img src="https://pbs.twimg.com/media/DdR-mmGVAAAzGGA.jpg:large" height=200 style="text-align:center"></img></div>
 
-![](https://user-images.githubusercontent.com/3716307/70001073-3ec5d000-1511-11ea-9b4f-42e14b6af1b7.png)
 
 ## Step 1: Login in your provided AWS account
 
@@ -30,3 +29,5 @@ Follow the instructions from then on, as a recap:
 
 
 Have fun and get building!
+
+<img width="250" alt="Screen Shot 2019-12-02 at 2 35 19 PM" src="https://user-images.githubusercontent.com/3716307/70001073-3ec5d000-1511-11ea-9b4f-42e14b6af1b7.png">
